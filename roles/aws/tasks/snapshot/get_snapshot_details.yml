@@ -16,5 +16,4 @@
 - name: Display snapshot_details
   ansible.builtin.debug:
     var: snapshot_details
-    verbosity: 3
 ...
