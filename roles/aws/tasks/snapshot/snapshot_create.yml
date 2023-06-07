@@ -14,6 +14,8 @@
       guid: "{{ item.6 }}"
     description: "{{ item.0 }} pre leapp snapshot"
     region: "{{ ec2_region }}"
+    # Create a snapshot only if the most recent one is older than x - default to one year
+    last_snapshot_min_age: "{{ previous_snapshot_age | default(31536000) | int }}"
     wait: true
   with_together:
     - "{{ instance_details.instances | map(attribute='tags.Name') | list }}"
