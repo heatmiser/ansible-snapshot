@@ -12,6 +12,8 @@
       root_device_name: "{{ item.3 }}"
       Workshop: "{{ item.6 }}"
       guid: "{{ item.6 }}"
+      operating_system: "{{ item.7 }}"
+      os_major_version: "{{ item.8 }}"
     description: "{{ item.0 }} pre leapp snapshot"
     region: "{{ ec2_region }}"
     # Create a snapshot only if the most recent one is older than x - default to one year
@@ -25,4 +27,6 @@
     - "{{ instance_details.instances | map(attribute='tags.Student') | list }}"
     - "{{ instance_details.instances | map(attribute='instance_id') | list }}"
     - "{{ instance_details.instances | map(attribute='tags.Workshop') | list }}"
+    - "{{ instance_details.instances | map(attribute='tags.operating_system') | list }}"
+    - "{{ instance_details.instances | map(attribute='tags.os_major_version') | list }}"
 ...
