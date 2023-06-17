@@ -1,0 +1,7 @@
+---
+- name: Delete EBS volume
+  amazon.aws.ec2_vol:
+    id: "{{ ebs.volume_id }}"
+    region: "{{ ec2_region }}"
+    state: absent
+...

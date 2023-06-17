@@ -51,6 +51,9 @@
       ansible.builtin.include_tasks: instance/detach_volume.yml
     - name: Create new EBS volume from snapshot and attach to instance
       ansible.builtin.include_tasks: instance/new_volume_and_attach.yml
+    - name: Delete prior EBS volume
+      when: delete_prior_volume
+      ansible.builtin.include_tasks: instance/delete_volume.yml
     - name: Start instance
       ansible.builtin.include_tasks: instance/start_instances.yml
 

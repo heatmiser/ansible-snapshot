@@ -1,4 +1,6 @@
 ---
 # defaults file for aws snapshot
 snapshot_state: present
+# default to not deleting prior EBS volume post snapshot revert
+delete_prior_volume: false
 ...
