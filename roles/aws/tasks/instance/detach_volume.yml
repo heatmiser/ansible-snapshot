@@ -13,7 +13,8 @@
     - "{{ instance_details.instances | map(attribute='instance_id') | list }}"
   register: ebs_volume_detach
 
-- name: Display ebs_volume_detach
+- name: Display results for detached EBS volume 
   ansible.builtin.debug:
-    var: ebs_volume_detach
+    var: item
+  loop: "{{ ebs_volume_detach.results|flatten(levels=1) }}"
 ...
