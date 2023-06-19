@@ -6,7 +6,7 @@
     device_name: "{{ item.4 }}"
     region: "{{ ec2_region }}"
     volume_type: "gp3"
-    tags: "{{ item.6 }}"
+    tags: "{{ item.5 }}"
   with_together:
     - "{{ snapshot_details.snapshots | map(attribute='tags.Name') | list }}"
     - "{{ snapshot_details.snapshots | map(attribute='tags.Instance_name') | list }}"
