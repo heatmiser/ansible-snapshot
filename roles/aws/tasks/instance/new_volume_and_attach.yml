@@ -12,4 +12,9 @@
     - "{{ snapshot_details.snapshots | map(attribute='tags.Instance_id') | list }}"
     - "{{ snapshot_details.snapshots | map(attribute='snapshot_id') | list }}"
     - "{{ snapshot_details.snapshots | map(attribute='tags.root_device_name') | list }}"
+  register: ebs_volume_attach
+
+- name: Display results for EBS volume attachment
+  ansible.builtin.debug:
+    var: ebs_volume_attach
 ...
