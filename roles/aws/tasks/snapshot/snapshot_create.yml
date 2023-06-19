@@ -3,7 +3,7 @@
   amazon.aws.ec2_snapshot:
     volume_id: "{{ item.1.ebs.volume_id }}"
     snapshot_tags:
-      Name: "snap-{{ item.0 }}"
+      Name: "{{ item.0 }}"
       Student: "{{ item.4 }}"
       Instance_name: "{{ item.0 }}"
       Instance_id: "{{ item.5 }}"
