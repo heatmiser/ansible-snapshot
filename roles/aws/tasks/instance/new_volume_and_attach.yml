@@ -6,10 +6,17 @@
     device_name: "{{ item.4 }}"
     region: "{{ ec2_region }}"
     volume_type: "gp3"
+    tags: "{{ item.5 }}"
   with_together:
     - "{{ snapshot_details.snapshots | map(attribute='tags.Name') | list }}"
     - "{{ snapshot_details.snapshots | map(attribute='tags.Instance_name') | list }}"
     - "{{ snapshot_details.snapshots | map(attribute='tags.Instance_id') | list }}"
     - "{{ snapshot_details.snapshots | map(attribute='snapshot_id') | list }}"
     - "{{ snapshot_details.snapshots | map(attribute='tags.root_device_name') | list }}"
+    - "{{ snapshot_details.snapshots | map(attribute='tags') | list }}"
+  register: ebs_volume_attach
+
+- name: Display results for EBS volume attachment
+  ansible.builtin.debug:
+    var: ebs_volume_attach
 ...

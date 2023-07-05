@@ -1,0 +1,8 @@
+---
+- name: Delete EBS volume
+  amazon.aws.ec2_vol:
+    id: "{{ item.volume.id }}"
+    region: "{{ ec2_region }}"
+    state: absent
+  loop: "{{ ebs_volume_detach.results|flatten(levels=1) }}"
+...

@@ -1,0 +1,15 @@
+---
+- name: Format volume selection filters tags for amazon.aws.ec2_vol_info
+  ansible.builtin.script: build_tags_dict.py "{{ volumes.tags }}"
+  delegate_to: localhost
+  connection: local
+  register: ec2_volume_tags
+
+- name: Get volume info
+  amazon.aws.ec2_vol_info:
+    filters: "{{ ec2_volume_tags.stdout }}"
+    region: "{{ ec2_region }}"
+  delegate_to: localhost
+  connection: local
+  register: volume_details
+...
